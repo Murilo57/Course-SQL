@@ -76,3 +76,42 @@ FROM Sales.SalesOrderDetail
 - Para cada grupo você pode aplicar um função de agregação, por exemplo:
     -calcular a soma de itens
     -contar o numero de itens naquele grupo
+
+-- Seleciona os IDs, soma os preços unitarios e agrupa os registros com os mesmo IDs e soma todos os Preços unitarios de cada ID caso se repita(agrupa)
+SELECT SpecialOfferID, SUM(UnitPrice) AS "SOMA"
+FROM Sales.SalesOrderDetail
+GROUP BY SpecialOfferID
+
+-- Vamos dizer qeu eu quero saber quantos cada produto foi vendido até hoje
+
+SELECT ProductID, Count(ProductID) as 'CONTAGEM'
+FROM Sales.SalesOrderDetail
+Group by ProductID
+
+-- Vamos se dizer que eu quero saber quantos nomes de cada nome temos cadastrado em nosso banco de dados
+
+SELECT FirstName, COUNT(FirstName) AS "Contagem"
+FROM Person.Person
+GROUP BY FirstName
+
+-- Na tabela production.product eu quero saber a média de preço para os produtos que são pratas(silver)
+ SELECT Color, AVG(ListPrice) AS 'MEDIA'
+FROM production.product
+WHERE Color = 'Silver'
+GROUP BY Color
+
+--- Desafio 1 ---
+Eu preciso saber quantas pessoas tem o mesmo MiddleName agrupadas por o MiddleName
+
+SELECT MiddleName, COUNT(MiddleName) AS 'Contagem'
+FROM Person.Person
+GROUP BY MiddleName
+
+Retornado 71 registros
+
+--- Desafio 2 ---
+Eu preciso saber em média qual é a quantidade(quantity) que cada produto é vendido na loja
+
+SELECT ProductID, COUNT(OrderQty)
+FROM Sales.SalesOrderDetail
+GROUP BY ProductID
