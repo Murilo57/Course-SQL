@@ -112,6 +112,85 @@ Retornado 71 registros
 --- Desafio 2 ---
 Eu preciso saber em média qual é a quantidade(quantity) que cada produto é vendido na loja
 
-SELECT ProductID, COUNT(OrderQty)
+SELECT ProductID, AVG(OrderQty) "media"
 FROM Sales.SalesOrderDetail
 GROUP BY ProductID
+
+--- Desafio 3 ---
+Eu quero saber qual foram as 10 vendas que no total tiveram os maiores valor de venda (line total) por produto do maior valor para o menor
+
+> tabela sales.salesordertail
+
+SELECT TOP 10 productid, Sum(LineTotal)
+FROM Sales.SalesOrderDetail
+Group By ProductId
+order By Sum(LineTotal) Desc
+
+--- Desafio 4 ---
+Eu preciso saber quantos produtos e qual e quantidade medai de produtos temos cadastrados nas nossas ordem de serviço (WorkOrder), agrupados por ID
+
+SELECT WorkOrderID, Count (productId) as 'QTDE PROD', AVG(OrderQty) AS 'MEDIA PROD'
+FROM production.WorkOrder
+GROUP BY ProductID
+
+/* SQL AULA 14 HAVING + DESAFIOS (INTERMEDIÁRIO)*/
+O having é basicamente muito usado em junção com o group by para filtrar resultados de um agrupamento
+
+De uma forma mais simples eu gosto de entender ele como basicamente um where para dados agrupados 
+
+-- Exemplo 1:
+
+SELECT coluna1, funcaoAgregacao(coluna2)
+FROM nomeTabela
+GROUP BY coluna1
+HAVING condicao;
+
+A grande diferença entre HAVING E WHERE.
+É que o GROUP BY é aplicado depois que os dados ja foram agrupados, enquanto o WHERE é aplicado antes dos dados serem agrupados
+
+Vamos dizer que queremos saber quais nomes no sistema tem um ocorrencia maior que 10 vezes
+
+SELECT FirstName, count(FirstName) as "Quantidade"
+FROM person.Person
+GROUP BY FirstName
+HAVING COUNT (FirstName) > 10
+
+--- Exemplo 2:
+ Por exemplo queremos saber mais produtos que no total de vendas estão entre 162k a 500k
+
+SELECT ProductID, SUM(LineTotal) As "Total"
+FROM sales.SalesOrderDetail
+GROUP BY ProductID
+HAVING SUM(LineTotal) between 162000 and 500000 
+
+--- Exemplo 3:
+Você quer saber quais nomes no sistema tem um ocorrencia maior que 10 vezes, porem somente onde o titulo é 'Mr.'
+
+SELECT FirstName, COUNT(FirstName) as 'Quantidade'
+FROM person.Person
+WHERE Title = 'Mr.'
+GROUP BY FirstName
+HAVING COUNT(FirstName) > 10 
+
+--- Desafio 1 ---
+Estamos querendo identificar as provincias(stateProvinceID) com o maior numero de cadastros no nosso sistema, então é preciso encontrar quais provincias (stateProvinceId) estão registradas no banco de dados mais que 1000 vezes
+
+> tabela person.Address
+> Usar having, count e operadores matematicos
+
+SELECT COUNT (*) AS 'QTDE', stateProvinceID
+FROM PERSON.ADDRESS
+GROUP BY stateProvinceID
+HAVING Count (*) > 1000
+
+-- Desafio 2 ---
+    Sendo que se trata de uma multinacional os gerentes querem saber quais produtos (productId) não estão trazendo em média no minimo 1 milhão em total de vendas (lineTotal)
+
+> tabela sales.salesorderdetail
+> usar having, count e operadores matemáticos
+
+SELECT ProductId, avg(LineTotal) as 'media'
+FROM Sales.SalesOrderDetail 
+GROUP BY ProductID, LineTotal
+HAVING AVG(LineTotal) < 1000000
+ORDER BY LineTotal Desc 
