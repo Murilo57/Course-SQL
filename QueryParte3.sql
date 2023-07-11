@@ -171,3 +171,79 @@ Eu quero saber na tabela detalhe do pedido [Order Detaisl] quais produtos tem o 
 SELECT A.productId, A.discount, B.productID, b.discount
 FROM [Order Details] A, [Order Details] B
 WHERE A.Discount = B.Discount
+
+--- Aula 24 Self Join ---
+-- Desafio 1 ---
+Eu quero todos os clientes que moram na mesma regiao
+
+SELECT A.ContactName, A.Region, B.ContactName, B.Region
+From CUSTOMERS A, CUSTOMERS B
+WHERE A.Region = B.Region
+
+Retornado 87 Registros
+
+-- Desafio 2 --
+Eu quero encontrar(nome e data de contratação) de todos os funcionarios que foram contratados no mesmo ano
+
+SELECT A.FirstName, B.FirstName, B.HireDate, A.HireDate
+FROM Employees A, Employees B
+WHERE DATEPART(YEAR,A.HireDate) = DATEPART(YEAR,B.HireDate)
+
+Retornado 27 registros
+
+-- Desafio 3 --
+Eu quero saber na tabela detalhe do pedido [Order Details] quais produtos tem o mesmo porcentual de desconto
+
+SELECT *
+FROM [Order Details] A, [Order Details] B
+WHERE A.Discount = B.Discount
+
+Retornado 1.872.945 registros
+
+/* SQL AULA 23 SUBQUERY (SUBSELECT) (AVANÇADO)*/
+
+-- Exercicio 1 --
+ Monte um relatório para mim de todos os produtos cadastrados que tem preço de venda acima de média 
+
+
+-- 1º Sem SubQuery
+
+SELECT AVG(ListPrice)
+FROM Production.Product
+
+Retornado o valor 438,66...
+
+SELECT *
+FROM Production.Product
+WHERE ListPrice > 438.66 
+
+-- 2º Com SubQuery
+
+SELECT *
+FROM Production.Product
+WHERE ListPrice > (SELECT AVG(listPrice) FROM Production.Product)
+
+--- Exercicio 2 ---
+Eu quero saber o nome dos meus funcionarios que tem o cargo de "Design Engineer"
+
+SELECT *
+FROM Person.Person
+WHERE BusinessEntityID in (SELECT BusinessEntityID FROM HumanResources.Employee WHERE JobTitle = 'Design Engineer')
+
+Retornado 3 Registros
+
+O SubSelect é recomendad para não ter que chumbar informações e deixar o SELECT dinamico
+
+(FIXAR INFORMAÇÕES NÃO É A FORMA MAIS CORRETA)
+
+---- DESAFIO ----
+Encontre para mim todos os endereços que estão no estado de 'Alberta', pode trazer todas as informações
+-- Usar tabelas: Person.Address e Person.StateProvince
+
+SELECT *
+FROM Person.Address A
+WHERE A.StateProvinceID in (SELECT B.StateProvinceID FROM Person.StateProvince B WHERE Name = 'Alberta')
+
+Retornado 25 registros
+
+/* SQL AULA 20 DATEPART + DESAFIOS (AVANÇADO)*/

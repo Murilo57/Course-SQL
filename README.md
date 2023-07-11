@@ -1,5 +1,8 @@
 # Course-SQL
+
 Course of SQL following video of Jonathan of channel youtube Dev Aprender
+
+https://www.youtube.com/watch?v=G7bMwefn8RQ&t=7764s
 
 Starting the day course 05/07/2023
 
@@ -27,3 +30,13 @@ FULL OUTER JOIN - Return a  set of all record being equal and the records that a
 LEFT OUTER JOIN - Return a set of all records of TableA, and records correspondents the TableB. If not to have records correspondents the go completed with "null" 
 
 UNION - Matches two or more results of a select in a result
+
+Banco de dados (Self Join) a partir da aula 24: http://b.link/BancoDeDadosAual24
+
+11/07/2023
+SELF JOIN - Relates information equal the INNER JOIN, but information of own table
+
+SUBQUERY (SUBSELECT) - Is a SELECT inside other SELECT or in a filter WHERE, ever executed first inside parentheses
+
+
+DATEPART(xx,Colum) - Manipulation of type date for others types as: Year, month, week, day, etc.
