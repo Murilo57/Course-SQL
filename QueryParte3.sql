@@ -247,3 +247,47 @@ WHERE A.StateProvinceID in (SELECT B.StateProvinceID FROM Person.StateProvince B
 Retornado 25 registros
 
 /* SQL AULA 20 DATEPART + DESAFIOS (AVANÇADO)*/
+
+-- Exemplos --
+-- 1º
+SELECT SalesOrderID, DATEPART(MONTH, OrderDate) as Mes
+FROM Sales.SalesOrderHeader
+
+-- 2º 
+SELECT AVG(Totaldue) as Media, DATEPART(month, OrderDate) as Mes
+FROM Sales.SalesOrderHeader
+GROUP BY DATEPART(month, orderDate)
+ORDER BY Mes
+
+/* SQL AULA 21 OPERAÇÕES EM STRING (AVANÇADO) */
+Manilupação de string como:
+
+ CONCAT (Concatena as string)
+ UPPER(manipula a string para maiuscula)
+ LOWER(manipula a string para minuscula)
+ LEN(Faz a contagem de caracteres)
+ SUBSTRING(Precisa ser passado um parametro de inicio e fim após declarar a coluna e ele ira contar do primeiro ao segundo numero declarado)
+ REPLACE(O replace serve para trocar algum caractere ou toda a string, coletando 3 parametros começando pela coluna, 'Caracter ou string que vai ser substituido', 'Valor que ira substituir' )
+-- Exemplo CONCAT --
+SELECT CONCAT(FirstName, ' ' ,LastName)
+FROM Person.Person
+
+-- Concatenado(junta) as duas colunas em uma
+
+-- Exemplo Upper
+SELECT UPPER(FirstName)
+FROM Person.Person
+
+-- Exemplo Lower
+SELECT LOWER(FirstName)
+FROM Person.Person
+
+-- Exemplo SUBSTRING
+--                coluna,inicio,fim            
+SELECT SUBSTRING(FirstName,1,3)
+FROM Person.Person
+
+-- Exemplo REPLACE
+--
+SELECT REPLACE(ProductNumber, '-', '#')
+FROM Production.Product

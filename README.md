@@ -40,3 +40,11 @@ SUBQUERY (SUBSELECT) - Is a SELECT inside other SELECT or in a filter WHERE, eve
 
 
 DATEPART(xx,Colum) - Manipulation of type date for others types as: Year, month, week, day, etc.
+
+STRING MANIPULATION - 
+ CONCAT (Concatenates strings)
+ UPPER(manipulate the string to upper case)
+ LOWER(manipulate the string to lower case)
+ LEN(Does character count)
+ SUBSTRING(A start and end parameter must be passed after declaring the column and it will count from the first to the second declared number)
+ REPLACE(The replace is used to change some character or the whole string, collecting 3 parameters starting with the column, 'Character or string that will be replaced', 'Value that will replace' )
