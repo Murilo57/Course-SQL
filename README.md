@@ -42,9 +42,37 @@ SUBQUERY (SUBSELECT) - Is a SELECT inside other SELECT or in a filter WHERE, eve
 DATEPART(xx,Colum) - Manipulation of type date for others types as: Year, month, week, day, etc.
 
 STRING MANIPULATION - 
+
  CONCAT (Concatenates strings)
+
  UPPER(manipulate the string to upper case)
+
  LOWER(manipulate the string to lower case)
+
  LEN(Does character count)
+
  SUBSTRING(A start and end parameter must be passed after declaring the column and it will count from the first to the second declared number)
  REPLACE(The replace is used to change some character or the whole string, collecting 3 parameters starting with the column, 'Character or string that will be replaced', 'Value that will replace' )
+
+ 12/07/2023
+ 
+ PRIMARY AND FOREIGN KEY:
+ - A primary key is basically a column or group of voices, used to uniquely identify a row in a table
+ - You can create these keys through restrictions (or constraints in English), which are rules that you define when you are creating a column
+ - So when you do this you are creating a unique index for that column or group of columns
+
+ CREATE TABLE - QueryParte4.Line 1
+
+ INSERT INTO - Insert of new record
+
+ UPDATE - Update record
+
+ DELETE - Delete record
+
+ ALTER TABLE - QueryParte4.Line 51
+
+ DROP TABLE - Delete a table of data base
+
+ CHECK CONSTRAINT - QueryParte4.Line 70
+
+ NOT NULL CONSTRAINT - Forces the constraint that it is not possible to insert data into a table without filling the column marked as NOT NULL
